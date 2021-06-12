@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>INDEX PAGE FOR INVENTORY</title>
+	<style type="text/css">
+		body
+		{
+			text-align: center;
+		}
+		.container
+		{
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.flex-item 
+		{
+    		height: 40vh;
+    		width: 60vw;
+    		position: relative;
+    		top: 15vh;
+    		background-color: violet;
+    		margin: 6vw;
+    		border-radius: 2em;
+    		background-image: url("static/images/coral.jpg");
+    		background-size: cover;
+    		border: 2px solid black;
+    		box-shadow: 0 0 50px 50px rgba(0,0,0,0.4);
+    		font-size: 2em;
+    		padding: 2em;
+		}
+		form input
+		{
+			position: relative;
+			margin: 1em;
+		}
+	</style>
+</head>
+<body>
+	<h1>SEARCH INVENTORY FOR PHOENIX BOOKSTORE</h1>
+	<h2>Search by Shop ID OR Product ID or Quantity or any combination of these</h2>
+	{% if message != "" %}
+		<h2 style="color: red;">{{ message }}</h2>
+	{% endif %}
+	<div class="container">
+		<div class="flex-item">
+			<form method="GET" action="/get_info">
+				<label for="shopid">Enter Shop ID</label>
+				<input type="text" name="shopid"><br/>
+				<label for="productid">Enter Product ID</label>
+				<input type="text" name="productid"><br/>
+				<label for="quantity">Enter quantity</label>
+				<input type="number" name="quantity"><br/>
+				<input type="submit" value="SUBMIT">
+			</form>
+		</div>
+	</div>
+</body>
+</html>

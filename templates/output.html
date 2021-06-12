@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OUTPUT PAGE</title>
+	<style type="text/css">
+		body
+		{
+			background-image: url("static/images/space.jpg");
+			color: white;
+			font-weight: bolder;
+			background-size: cover;
+			font-size: 1.2em;
+			text-align: center;
+		}
+		.container
+		{
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.flex-item 
+		{
+    		height: 5vh;
+    		width: 15vw;
+    		position: relative;
+    		top: 5vh;    		
+    		font-size: 2em;
+    		padding: 2em;
+    		margin: 2% 0;
+    		background-color: rgba(255,255,255,0.2);
+    		border-right: 2px solid black; 
+		}
+		.col_heads
+		{
+			background-color: transparent;
+			height: 4vh
+		}
+	</style>
+</head>
+<body>
+	{% if "Message" in data %}
+		<div><h1>{{ data.Message }}</h1></div>
+	{% else %}
+		<div class="container">
+		<div class="flex-item col_heads">SHOPID</div>
+		<div class="flex-item col_heads">PRODUCTID</div>
+		<div class="flex-item col_heads">QUANTITY</div>
+		{% for item in data %}
+		<div class="flex-item">{{ item.shopid }}</div>
+		<div class="flex-item">{{ item.productid }}</div>
+		<div class="flex-item">{{ item.quantity }}</div>
+		{% endfor %}
+		</div>
+	{% endif %}
+</body>
+</html>

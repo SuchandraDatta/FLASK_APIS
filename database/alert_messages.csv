@@ -1,0 +1,8 @@
+ShopID,ProductID,Quantity,Timestamp,Alert,Alert_Type
+S_002,P_002,115,07-00-2021 16:00:09,Lesser than predicted values,1
+S_002,P_002,115,07-00-2021 16:00:27,Stock empty,0
+S_001,P_001,45,07-03-2021 16:03:53,Stock empty,0
+S_001,P_001,45,08-42-2021 16:42:27,Stock empty,0
+S_021,P_011,45,08-43-2021 16:43:36,Stock empty,0
+S_061,P_051,123,12-48-2021 15:48:37,Stock empty,0
+S_061,P_051,123,12-49-2021 15:49:20,Stock empty,0
