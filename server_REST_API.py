@@ -2,10 +2,19 @@ import pandas as pd
 import json, sys
 from utils import helper_functions as hf
 from flask import Flask, jsonify, request
+from flask_swagger_ui import get_swaggerui_blueprint
 from csv import DictWriter
+import configs as config
+import os
 
 app = Flask(__name__)
-
+swaggerui_blueprint = get_swaggerui_blueprint(
+    config.SERVER_SETTINGS.get("SWAGGER_URL"),
+    config.SERVER_SETTINGS.get("SWAGGER_API_URL"),
+    config={  # Swagger UI config overrides
+        'app_name': "Test application"
+    })
+app.register_blueprint(swaggerui_blueprint)
 @app.route('/', methods=["GET"])
 def index_page():
 	return "INDEX PAGE"
@@ -55,6 +64,6 @@ request.json == when application/json is there
 request.data == raw data if it couldnt get parsed as HTML form data
 All of these are multidict instances except for json, access them like request.form["hey"] or if you dont know if the key exists use request.form.get("hey")
 '''
-
+PORT = int(os.environ.get("PORT", config.SERVER_SETTINGS.get("PORT")))
 if __name__ == "__main__":
-	app.run(host="localhost", port=8001, debug=True)
+	app.run(host="localhost", port=PORT, debug=True)

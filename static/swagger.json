@@ -1,0 +1,167 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "REST API PRACTICE",
+    "description": "Trying to understand how to use swagger to generate the docs",
+    "version": "0.0.1"
+  },
+  "paths": {
+  	"/": {
+  		"get": {
+    	"description": "Index page",
+    	"responses": {
+    					"200":{
+    						"description":"Successfully executed GET request",
+    						"content":{
+    							"text/html":{
+    								"schema":{
+    									"type":"string"
+    								}
+    							}
+    						}
+    					}
+
+    				 }
+  				}
+		  },
+	"/info/{shopid}/{productid}":{
+		"get":
+		{
+			"parameters":
+		[{
+		  "in":"path",
+			"name":"shopid",
+			"type":"string",
+			"required":true,
+			"description":"shopid"
+		}, {
+			"name":"productid",
+			"in":"path",
+			"required":true,
+			"type":"string"
+		}],
+			"description":"Getting info for shopid and productid",
+			"responses":{
+				"200":
+				{
+					"description":"Successful",
+					"content":
+					{
+						"application/json":
+						{
+							"schema":
+							{
+								"$ref":"#/components/schemas/info_get_request"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"/info/":
+	{
+		"post":
+		{
+			"requestBody":
+			{
+				"description":"Data to append to CSV file",
+				"required": true,
+				"content":
+				{
+					"application/json":
+					{
+						"schema":
+						{
+							"$ref":"#/components/schemas/info_post_request"
+						}
+					}
+				}
+			},
+			"responses":
+			{
+				"200":
+				{
+					"description":"OK",
+					"content":
+					{
+						"application/json":
+						{
+							"schema":
+							{
+								"type":"object",
+								"properties":
+								{
+									"Status":
+									{
+										"type":"string",
+										"description":"Message"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+  },
+  "components":
+  {
+  	"schemas":
+  	{
+  		"info_get_request":
+  		{
+  			"type":"object",
+								"properties":
+								{
+									"ProductID":
+									{
+										"type":"string",
+										"description":"productid"
+									},
+									"ShopID":
+									{
+										"type":"string",
+										"description":"shopid"
+									},
+									"Quantity(Units)":
+									{
+										"type":"number",
+										"description":"Units present in inventory"
+									}
+
+								}
+  		},
+  		"info_post_request":
+  		{
+  			"type":"object",
+							"properties":
+							{
+								"shopid":
+								{
+									"type":"string",
+									"description":"shopid"
+								},
+								"productid":
+								{
+									"type":"string",
+									"description":"productid"
+								},
+								"quantity":
+								{
+									"type":"number",
+									"description":"Quantity predicted"
+								},
+								"timestamp":
+								{
+									"type":"string",
+									"format":"date",
+									"description":"timestamp",
+									"example":"21-06-2021 06:23:00"
+								}
+							}
+  		}
+  	}
+  }
+}
